@@ -4,6 +4,7 @@ Newest first. A row is added only after the transaction is mined and opened on t
 
 | Date (UTC) | Step | Requirement | Block | Explorer | What it proves |
 |---|---|---|---|---|---|
+| 2026-11-02 | First escrow trade on Fuji: buyer funds 1 USDC, then releases it | FR-03 | 60383092, 60383096 | https://testnet.snowtrace.io/tx/0x68fe1c6fade7af222b4aa99363c8d7eb52d578ac63242733de14c43d4359d519 and https://testnet.snowtrace.io/tx/0xa69f086729fcd392e3e5d29989aa561a7135f44e3bee290813ef4405e25da9c9 | The full buyer path works on chain with Circle test USDC; the seller is a stand-in (the Commodex operator wallet), not a counterparty |
 | 2026-11-01 | CommodexEscrow v2 source verified on the explorer; independent check 11/11 | FR-03 | — | https://testnet.snowtrace.io/address/0xe453ebae20f06d53c44946b15A35E0e790A3089e/contract/43113/code | The deploy input is byte-for-byte the published build plus its constructor arguments (`checks/verify-fuji-escrow.mjs` in commodex-agent-contract-assurance) |
 | 2026-11-01 20:43 | CommodexEscrow v2 deployed at `0xe453ebae20f06d53c44946b15A35E0e790A3089e` on Circle Fuji USDC | FR-03 | 60366934 | https://testnet.snowtrace.io/tx/0xa97409ec2d65e404c6e40cee52b9db715556ba1050282f0c2727b2c1435ca293 | Stablecoin escrow is live on Fuji: buyer releases; operator force-releases after a 7-day deadline; operator alone resolves disputes; fee 0%; test USDC only |
 | 2026-10-11 16:00 | App anchors Pool-to-Pool match root `P2P_ROOT` | FR-03 | 59309318 | https://testnet.snowtrace.io/tx/0x54a4a46708d4bbdd641f9f4f14fb88c085f2af29d35295834f4d6caab4ec38e6 | A 12-buyer match is fixed on chain; each buyer proves their share with a Merkle proof against the anchored root |
@@ -26,5 +27,5 @@ How each row was checked on 2026-10-11: transaction receipts read from the publi
 |---|---|---|
 | FR-01 | Operator submits on Fuji 43113 (no participant wallet) | **demonstrated 2026-10-11** (block 59306896) |
 | FR-02 | Rehearsal PO on staging with document SHA-256s | not yet demonstrated |
-| FR-03 | Document-hash tx recorded on Fuji against the PO | started 2026-10-11: app anchors ledger heads and a Pool-to-Pool root; 2026-11-01: USDC escrow contract deployed and verified on Fuji. Next: a funded and released trade on Fuji, then a settled PO anchor |
+| FR-03 | Document-hash tx recorded on Fuji against the PO | started 2026-10-11: app anchors ledger heads and a Pool-to-Pool root; 2026-11-01: USDC escrow contract deployed and verified on Fuji; 2026-11-02: first funded and released trade. Next: escrow wired into the staging app, then a settled PO anchor |
 | FR-04 | Each contribution traced to a full commit | not yet demonstrated |
